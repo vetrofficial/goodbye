@@ -11,7 +11,7 @@ const MEMORIES_CONFIG = {
 
     // Music
     soundtrack: {
-        title: "Shahrah-e-Faisal :)",
+        title: "Shahrah-E-Faisal :)",
         artist: "Malcolm Todd • Earrings",
         youtubeId: "a4tdS3IB294",
         spotifyTrackId: "0eAuGrXyGFYwur9ARUe7LJ"
