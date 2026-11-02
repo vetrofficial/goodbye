@@ -1,1 +1,328 @@
-<!doctype html><html style="height:100%"><head><meta name="viewport" content="width=device-width"><style>@keyframes p{0%,100%{transform:scale(1)}50%{transform:scale(1.3)}}body{margin:0;min-height:100%;display:grid;place-items:center;background:linear-gradient(135deg,#ff758c,#ff7eb3);color:#fff;font-family:sans-serif;text-align:center}.h{font-size:70px;animation:p 1s infinite}a{color:#fff}</style></head><body><div><div class="h">❤️</div><h1>Safe Travels!</h1><p>Redirecting to your surprise...</p><a href="https://example.com">Click if not redirected</a></div><script>setTimeout(()=>location.href="https://example.com",3000)</script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Safe Travels ❤️</title>
+    <style>
+        :root {
+            --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #31103f 100%);
+            --glass-bg: rgba(255, 255, 255, 0.08);
+            --glass-border: rgba(255, 255, 255, 0.15);
+            --accent: #ff477e;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body {
+            min-height: 100vh;
+            background: var(--bg-gradient);
+            background-attachment: fixed;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            color: #ffffff;
+            padding: 24px 16px;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Floating particles background */
+        .heart-particle {
+            position: fixed;
+            color: rgba(255, 71, 126, 0.3);
+            font-size: 20px;
+            pointer-events: none;
+            animation: floatUp 8s linear infinite;
+            z-index: 0;
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+        }
+
+        .container {
+            max-width: 520px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Hero Header */
+        header {
+            text-align: center;
+            margin-bottom: 32px;
+            padding-top: 10px;
+        }
+
+        .main-heart {
+            font-size: 64px;
+            display: inline-block;
+            animation: pulse 1.4s ease-in-out infinite;
+            filter: drop-shadow(0 0 20px rgba(255, 71, 126, 0.6));
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        h1 {
+            font-size: 32px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            margin-top: 8px;
+            background: linear-gradient(135deg, #ffffff 0%, #ffb3c6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            font-size: 15px;
+            color: rgba(255, 255, 255, 0.7);
+            margin-top: 6px;
+        }
+
+        /* Glassmorphism Panels */
+        .panel {
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 22px;
+            margin-bottom: 24px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .panel-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Polaroid Photo Gallery */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 14px;
+        }
+
+        .polaroid {
+            background: #ffffff;
+            padding: 8px 8px 24px 8px;
+            border-radius: 8px;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .polaroid:nth-child(odd) { transform: rotate(-2deg); }
+        .polaroid:nth-child(even) { transform: rotate(2deg); }
+
+        .polaroid:hover {
+            transform: scale(1.05) rotate(0deg);
+            z-index: 2;
+        }
+
+        .polaroid img {
+            width: 100%;
+            height: 140px;
+            object-fit: cover;
+            border-radius: 4px;
+            display: block;
+        }
+
+        /* Lightbox Modal */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 999;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .lightbox img {
+            max-width: 90%;
+            max-height: 80vh;
+            border-radius: 12px;
+            border: 3px solid #fff;
+        }
+
+        /* Music Player */
+        iframe {
+            width: 100%;
+            height: 152px;
+            border-radius: 16px;
+            border: none;
+        }
+
+        /* Message Board */
+        textarea {
+            width: 100%;
+            height: 90px;
+            background: rgba(0, 0, 0, 0.25);
+            border: 1px solid var(--glass-border);
+            border-radius: 14px;
+            padding: 12px;
+            color: white;
+            font-family: inherit;
+            font-size: 14px;
+            resize: none;
+            margin-bottom: 12px;
+            outline: none;
+        }
+
+        textarea:focus {
+            border-color: var(--accent);
+        }
+
+        .btn-submit {
+            width: 100%;
+            background: linear-gradient(135deg, #ff477e 0%, #ff70a6 100%);
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 14px;
+            font-weight: 700;
+            font-size: 15px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(255, 71, 126, 0.4);
+            transition: transform 0.1s ease;
+        }
+
+        .btn-submit:active { transform: scale(0.98); }
+
+        .messages-list {
+            margin-top: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .msg-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 12px 14px;
+            border-radius: 12px;
+            font-size: 14px;
+            line-height: 1.4;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .msg-time {
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.4);
+            margin-top: 4px;
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <div class="main-heart">❤️</div>
+            <h1>Safe Travels!</h1>
+            <p class="subtitle">A little corner of the internet for all our memories.</p>
+        </header>
+
+        <!-- Photo Gallery Section -->
+        <div class="panel">
+            <div class="panel-title">📸 Memories</div>
+            <div class="gallery">
+                <!-- Replace src with real picture URLs or local image files -->
+                <div class="polaroid" onclick="openLightbox(this)"><img src="https://picsum.photos/400/400?random=1" alt="Memory"></div>
+                <div class="polaroid" onclick="openLightbox(this)"><img src="https://picsum.photos/400/400?random=2" alt="Memory"></div>
+                <div class="polaroid" onclick="openLightbox(this)"><img src="https://picsum.photos/400/400?random=3" alt="Memory"></div>
+                <div class="polaroid" onclick="openLightbox(this)"><img src="https://picsum.photos/400/400?random=4" alt="Memory"></div>
+            </div>
+        </div>
+
+        <!-- Music Playlist Section -->
+        <div class="panel">
+            <div class="panel-title">🎧 Our Soundtrack</div>
+            <iframe src="https://open.spotify.com/embed/playlist/37i9dQZF1DXcBWIGoYBM5M?utm_source=generator&theme=0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+        </div>
+
+        <!-- Interactive Message Board -->
+        <div class="panel">
+            <div class="panel-title">✍️ Leave a Note</div>
+            <textarea id="msgInput" placeholder="Write something cute or leave a updates on your trip..."></textarea>
+            <button class="btn-submit" onclick="addNote()">Post Note</button>
+            <div id="messagesContainer" class="messages-list"></div>
+        </div>
+    </div>
+
+    <!-- Lightbox Modal -->
+    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+        <img id="lightboxImg" src="" alt="Enlarged photo">
+    </div>
+
+    <script>
+        // Floating Heart Particles Creation
+        for (let i = 0; i < 15; i++) {
+            let heart = document.createElement('div');
+            heart.className = 'heart-particle';
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = (Math.random() * 4 + 6) + 's';
+            heart.style.animationDelay = (Math.random() * 5) + 's';
+            document.body.appendChild(heart);
+        }
+
+        // Lightbox Functions
+        function openLightbox(element) {
+            const imgUrl = element.querySelector('img').src;
+            document.getElementById('lightboxImg').src = imgUrl;
+            document.getElementById('lightbox').style.display = 'flex';
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').style.display = 'none';
+        }
+
+        // Local Storage Notes System
+        function loadNotes() {
+            const container = document.getElementById('messagesContainer');
+            const notes = JSON.parse(localStorage.getItem('nfc_farewell_notes') || '[]');
+            container.innerHTML = notes.map(n => `
+                <div class="msg-card">
+                    <div>${escapeHtml(n.text)}</div>
+                    <div class="msg-time">${n.date}</div>
+                </div>
+            `).join('');
+        }
+
+        function addNote() {
+            const input = document.getElementById('msgInput');
+            const text = input.value.trim();
+            if (!text) return;
+
+            const notes = JSON.parse(localStorage.getItem('nfc_farewell_notes') || '[]');
+            notes.unshift({
+                text: text,
+                date: new Date().toLocaleDateString([], { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' })
+            });
+
+            localStorage.setItem('nfc_farewell_notes', JSON.stringify(notes));
+            input.value = '';
+            loadNotes();
+        }
+
+        function escapeHtml(text) {
+            return text.replace(/[&<>"']/g, function(m) {
+                return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' }[m];
+            });
+        }
+
+        loadNotes();
+    </script>
+</body>
+</html>
